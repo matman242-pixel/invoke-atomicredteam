@@ -1,9 +1,11 @@
 name: Check installation
 on: pull_request
+
 jobs:
   install-invoke:
     name: Install Invoke-Atomic
     runs-on: ${{ matrix.os }}
+    if: ${{ !contains(github.event.pull_request.changed_files, 'install-atomicredteam.ps1') && !contains(github.event.pull_request.changed_files, 'install-atomicsfolder.ps1') }}
     strategy:
       max-parallel: 3
       matrix:
